@@ -1,14 +1,28 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+// import { Image } from "@astrojs/image/components";
+
+import { image_list, delContent } from "../lib/makelist";
+
+console.log(Object.keys(delContent));
+// image_list.map((image) => console.log(image[0]));
+// image_list.map((image) => console.log(image[1]));
+// console.log(image_list);
+// const res = await getBlog();
+// console.log(res.content);
+// import { re } from "../lib/makelist";
+// console.log(re);
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
 		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
+		<!-- <p class="instructions">
+			To get started, open the directory <code>src/pages</code> in your project.<br
+			/>
+			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message
+			above.
 		</p>
 		<ul role="list" class="link-card-grid">
 			<Card
@@ -31,16 +45,24 @@ import Card from '../components/Card.astro';
 				title="Community"
 				body="Come say hi to our amazing Discord community. ❤️"
 			/>
-		</ul>
+		</ul> -->
+		<dev client:visible class="blog_images">
+			{
+				image_list.map((name_imgurl) => (
+					// console.log(name_imgurl[0]);
+					<img src={name_imgurl[1]} alt={name_imgurl[0]} />
+				))
+			}
+		</dev>
 	</main>
 </Layout>
 
 <style>
-	main {
+	/* main {
 		margin: auto;
 		padding: 1.5rem;
-		max-width: 60ch;
-	}
+		max-width: 60ch; */
+	/* } */
 	h1 {
 		font-size: 3rem;
 		font-weight: 800;
@@ -77,5 +99,24 @@ import Card from '../components/Card.astro';
 		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
 		gap: 1rem;
 		padding: 0;
+	}
+	.blog_images {
+		display: flex;
+		flex-wrap: wrap;
+		/* gap: 2px; */
+		/* padding: 1px; */
+		background-color: palevioletred;
+	}
+
+	.blog_images img {
+		width: calc(33.3%);
+		object-fit: cover;
+		transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+	}
+
+	img:hover {
+		box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
+		/* transform: translateY(-2.8rem); */
+		transform: translate(2rem, -2.8rem);
 	}
 </style>

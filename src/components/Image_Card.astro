@@ -1,26 +1,31 @@
 ---
 export interface Props {
+	name: string;
 	title: string;
-	body: string;
-	href: string;
+	date: string;
+	blog_url: string;
+	image_url: string;
 }
 
-const { href, title, body } = Astro.props;
+const { name, title, date, blog_url, image_url } = Astro.props;
+const group_name = "乃木坂46";
+const image_alt = group_name + " " + name;
 ---
 
-<li class="link-card">
-	<a href={href}>
+<li class="image_card">
+	<a href={blog_url}>
 		<h2>
-			{title}
+			{name}
 			<span>&rarr;</span>
 		</h2>
 		<p>
-			{body}
+			{title}
 		</p>
 	</a>
+	<img src={image_url} alt={image_alt} />
 </li>
 <style>
-	.link-card {
+	.image_card {
 		list-style: none;
 		display: flex;
 		padding: 0.25rem;
@@ -34,7 +39,7 @@ const { href, title, body } = Astro.props;
 			0 2px 4px -2px rgba(0, 0, 0, 0.1);
 	}
 
-	.link-card > a {
+	.image_card > a {
 		width: 100%;
 		text-decoration: none;
 		line-height: 1.4;
@@ -54,14 +59,14 @@ const { href, title, body } = Astro.props;
 		margin-bottom: 0;
 		color: #444;
 	}
-	.link-card:is(:hover, :focus-within) {
+	.image_card:is(:hover, :focus-within) {
 		background-position: 0;
 		background-image: var(--accent-gradient);
 		/* top: -2rem; */
 		/* transform: translateY(-2rem); */
 		/* transition-duration: 2s; */
 	}
-	.link-card:is(:hover, :focus-within) h2 {
+	.image_card:is(:hover, :focus-within) h2 {
 		color: rgb(var(--accent));
 	}
 </style>
