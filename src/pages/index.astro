@@ -1,11 +1,14 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 // import { Image } from "@astrojs/image/components";
 
-import { image_list, delContent } from "../lib/makelist";
+import { image_list } from "../lib/makelist";
+const group_name = "乃木坂46";
+const nogizaka_blog_url =
+  "https://www.nogizaka46.com/s/n46/diary/MEMBER?ima=2605";
 
-console.log(Object.keys(delContent));
 // image_list.map((image) => console.log(image[0]));
 // image_list.map((image) => console.log(image[1]));
 // console.log(image_list);
@@ -16,107 +19,84 @@ console.log(Object.keys(delContent));
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<!-- <p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br
-			/>
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message
-			above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul> -->
-		<dev client:visible class="blog_images">
-			{
-				image_list.map((name_imgurl) => (
-					// console.log(name_imgurl[0]);
-					<img src={name_imgurl[1]} alt={name_imgurl[0]} />
-				))
-			}
-		</dev>
-	</main>
+  <a href={nogizaka_blog_url}>
+    <h1>
+      Welcome to <span class="text-gradient">Astro</span>
+    </h1>
+  </a>
+  <dev class="blog_images">
+    {
+      image_list.map((name_imgurl) => (
+        <a class="imageover" href={name_imgurl[3]}>
+          <Image
+            src={name_imgurl[4]}
+            alt={group_name + " " + name_imgurl[0]}
+            height={500}
+            width={500}
+          />
+          <dev class="image-info">
+            <h3 class="name">{name_imgurl[0]}</h3>
+            <h3 class="date">{name_imgurl[2]}</h3>
+          </dev>
+        </a>
+      ))
+    }
+  </dev>
 </Layout>
 
 <style>
-	/* main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch; */
-	/* } */
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
-	.blog_images {
-		display: flex;
-		flex-wrap: wrap;
-		/* gap: 2px; */
-		/* padding: 1px; */
-		background-color: palevioletred;
-	}
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
 
-	.blog_images img {
-		width: calc(33.3%);
-		object-fit: cover;
-		transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
-	}
+  .blog_images {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .imageover {
+    position: relative;
+    width: calc(49.9%);
 
-	img:hover {
-		box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.25);
-		/* transform: translateY(-2.8rem); */
-		transform: translate(2rem, -2.8rem);
-	}
+    gap: 2px;
+    padding: 1px;
+    /* background-color: palevioletred; */
+  }
+  img {
+    width: calc(100%);
+    height: calc(100%);
+    object-fit: cover;
+    border-radius: 30px;
+    transition: transform 1s, border-radius 1s;
+  }
+  img:hover {
+    transform: translate(0.3rem, -0.3rem);
+    border-radius: 100px;
+  }
+
+  .image-info {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+  }
+  .image-info .name {
+    color: hotpink;
+    font-size: 2rem;
+  }
+  @media (max-width: 600px) {
+    .imageover {
+      width: calc(100%);
+    }
+    img {
+      border-radius: 10px;
+    }
+    img:hover {
+      transform: translate(0.2rem, -0.2rem);
+      border-radius: 30px;
+    }
+    .image-info .name {
+      font-size: 1rem;
+    }
+  }
 </style>

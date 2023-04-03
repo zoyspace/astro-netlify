@@ -16,20 +16,11 @@ function makeImageList(obj: object) {
     let work_name_image_list = [];
     let work_name_list = [];
     for (const [keyname, value] of Object.entries(obj)) {
-        // 出力件数を絞って、開発する。
-        // i = i +1;
-        // if (i >3) {break;}
-        // if (key != '五百城茉央') {continue;}
 
-        // console.log(keyname);
-        // work_name_list.push(keyname);
-        // work_name_image_list.push(value.page_info[0].image_urls[0])
-        // console.log(nogizka_blog_images[key]);
-        // console.log(nogizka_blog_images[key]['page_info']);
         for (let info of value.page_info) {
             for (let url of info.image_urls) {
 
-                let workImageUrl = [keyname, url];
+                let workImageUrl = [keyname, info.title, info.date, info.page_url, url];
                 // console.log(workImageUrl);
                 work_name_image_list.push(workImageUrl);
             }

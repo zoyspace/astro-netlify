@@ -2,12 +2,12 @@
 export interface Props {
 	name: string;
 	title: string;
-	date: string;
+	updated_date: string;
 	blog_url: string;
 	image_url: string;
 }
 
-const { name, title, date, blog_url, image_url } = Astro.props;
+const { name, title, updated_date, blog_url, image_url } = Astro.props;
 const group_name = "乃木坂46";
 const image_alt = group_name + " " + name;
 ---
