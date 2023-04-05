@@ -5,6 +5,8 @@ const response = await getBlog();
 
 export const delContent: object = delTags(response.content);
 export const image_list = makeImageList(delContent as Object);
+export const sorted_image_list = sortListInList(image_list);
+// console.log(sorted_image_list);
 
 function delTags(obj: String) {
     const work_str = obj.replace(/<br>/g, "\n").replace(/<p>/g, "").replace(/<\/p>/g, "").replace(/&nbsp;/g, " ");
@@ -33,6 +35,10 @@ function makeImageList(obj: object) {
 
     }
     return (work_name_image_list);
-
+}
+function sortListInList(arr: any[]) {
+    let work_list = [];
+   work_list = arr.sort((a, b)=> a[2] > b[2] ? -1 :1);
+   return work_list;
 
 }

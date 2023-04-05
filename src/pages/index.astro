@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 // import { Image } from "@astrojs/image/components";
 
-import { image_list } from "../lib/makelist";
+import { sorted_image_list,image_list } from "../lib/makelist";
 const group_name = "乃木坂46";
 const nogizaka_blog_url =
   "https://www.nogizaka46.com/s/n46/diary/MEMBER?ima=2605";
@@ -20,21 +20,25 @@ const nogizaka_blog_url =
 
 <Layout title="坂道IMAGE">
   <a href={nogizaka_blog_url}>
-    <amp-ad width="100" height="60" type="a8" data-aid="210602818207" data-wid="001" data-eno="01" data-mid="s00000008903001050000" data-mat="3HDY6A-3F8R02-1WP2-691UP" data-type="static"></amp-ad>
     <h1>
       Welcome to <span class="text-gradient">坂道IMAGE</span>
     </h1>
   </a>
+
   <dev class="blog_images">
+    <a href="https://px.a8.net/svt/ejp?a8mat=3T6DAK+59BV5E+2YVI+60OXD" rel="nofollow">
+      <img class="ad1" width="350" height="240" alt="" src="https://www28.a8.net/svt/bgt?aid=230404556318&wid=001&eno=01&mid=s00000013851001011000&mc=1">
+    </a>
+      <img class="ad2" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=3T6DAK+59BV5E+2YVI+60OXD" alt="">
     {
-      image_list.map((name_imgurl) => (
+      sorted_image_list.map((name_imgurl) => (
         <a class="imageover" href={name_imgurl[3]}>
           <Image
             src={name_imgurl[4]}
+            quality="high" 
             alt={group_name + " " + name_imgurl[0]}
-            format="jpeg"
-            height={500}
-            width={500}
+            // height={500}
+            // width={500}
           />
           <dev class="image-info">
             <h3 class="name">{name_imgurl[0]}</h3>
@@ -86,6 +90,13 @@ const nogizaka_blog_url =
     color: hotpink;
     font-size: 2rem;
   }
+  .ad1{
+      width: 350px; 
+      height: 240px;
+    }
+    .ad2{
+      width:1px; height:1px;
+    }
   @media (max-width: 600px) {
     .imageover {
       width: calc(100%);
@@ -100,5 +111,7 @@ const nogizaka_blog_url =
     .image-info .name {
       font-size: 1rem;
     }
+
   }
+
 </style>
