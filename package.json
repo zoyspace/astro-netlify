@@ -11,8 +11,7 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^3.1.1",
-    "@squoosh/lib": "^0.5.3",
-    "astro": "^2.1.7",
+    "astro": "^2.2.0",
     "canvas-confetti": "^1.6.0",
     "flowbite": "^1.6.4",
     "microcms-js-sdk": "^2.3.2",
