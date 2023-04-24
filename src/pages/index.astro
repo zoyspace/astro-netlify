@@ -1,8 +1,9 @@
 ---
-import { Image } from 'astro:assets'
+import Layout from "../layouts/Layout.astro";
+import Headers from "../layouts/_Header.astro";
+import { Image } from 'astro:assets';
 
 // import { Image } from "astro:assets";
-import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 // import { Image } from "@astrojs/image/components";
 
@@ -10,6 +11,7 @@ import { sorted_image_list,image_list } from "../lib/makelist";
 const group_name = "乃木坂46";
 const nogizaka_blog_url =
   "https://www.nogizaka46.com/s/n46/diary/MEMBER?ima=2605";
+import myImage from "../assets/20230222_1655_01_早川 聖来.jpg";
 
 // image_list.map((image) => console.log(image[0]));
 // image_list.map((image) => console.log(image[1]));
@@ -21,23 +23,31 @@ const nogizaka_blog_url =
 ---
 
 <Layout title="坂道IMAGE">
+  <Headers></Headers>
   <a href={nogizaka_blog_url}>
     <h1>
-      Welcome to <span class="text-gradient">坂道IMAGE</span>
+      Welcome to <span class="text-gradient text-purple-300">坂道IMAGE</span>
     </h1>
   </a>
 
   <dev class="blog_images">
-    <a href="https://px.a8.net/svt/ejp?a8mat=3T6DAK+59BV5E+2YVI+60OXD" rel="nofollow">
-      <img class="ad1" width="350" height="240" alt="" src="https://www28.a8.net/svt/bgt?aid=230404556318&wid=001&eno=01&mid=s00000013851001011000&mc=1">
-    </a>
-      <img class="ad2" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=3T6DAK+59BV5E+2YVI+60OXD" alt="">
+    <a href="https://px.a8.net/svt/ejp?a8mat=3T6JKZ+51L8AA+3J8+4YNBS1" rel="nofollow">
+      <img  width="300" height="250" alt="" src="https://www20.a8.net/svt/bgt?aid=230412707305&wid=001&eno=01&mid=s00000000458030006000&mc=1"></a>
+      <!-- <img class="a8advertisement" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=3T6JKZ+51L8AA+3J8+4YNBS1" alt="">     
+       <Image
+            src={myImage}
+            alt={group_name}
+          /> -->
     {
       sorted_image_list.map((name_imgurl) => (
+        // console.log(name_imgurl[3]);
+        // return(
+        <dev>
+      
         <a class="imageover" href={name_imgurl[3]}>
           <Image
             src={name_imgurl[4]}
-            format={'webp'} 
+            format={'jpg'} 
             alt={group_name + " " + name_imgurl[0]} 
             width={300} height={300}
             
@@ -47,6 +57,8 @@ const nogizaka_blog_url =
             <h3 class="date">{name_imgurl[2]}</h3>
           </dev>
         </a>
+      </dev>
+      // );
       ))
     }
   </dev>
@@ -96,7 +108,7 @@ const nogizaka_blog_url =
       width: 350px; 
       height: 240px;
     }
-    .ad2{
+  .a8advertisement{
       width:1px; height:1px;
     }
   @media (max-width: 600px) {
@@ -117,3 +129,4 @@ const nogizaka_blog_url =
   }
 
 </style>
+
