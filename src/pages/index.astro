@@ -7,7 +7,7 @@ import { Image } from 'astro:assets';
 import Card from "../components/Card.astro";
 // import { Image } from "@astrojs/image/components";
 
-import { sorted_image_list,image_list } from "../lib/makelist";
+import { sorted_image_list } from "../lib/makelist";
 const group_name = "乃木坂46";
 const nogizaka_blog_url =
   "https://www.nogizaka46.com/s/n46/diary/MEMBER?ima=2605";
@@ -23,21 +23,14 @@ import myImage from "../assets/20230222_1655_01_早川 聖来.jpg";
 ---
 
 <Layout title="坂道IMAGE">
-  <Headers></Headers>
+  <!-- <Headers></Headers> -->
   <a href={nogizaka_blog_url}>
     <h1>
       Welcome to <span class="text-gradient text-purple-300">坂道IMAGE</span>
     </h1>
   </a>
 
-  <dev class="blog_images">
-    <a href="https://px.a8.net/svt/ejp?a8mat=3T6JKZ+51L8AA+3J8+4YNBS1" rel="nofollow">
-      <img  width="300" height="250" alt="" src="https://www20.a8.net/svt/bgt?aid=230412707305&wid=001&eno=01&mid=s00000000458030006000&mc=1"></a>
-      <!-- <img class="a8advertisement" width="1" height="1" src="https://www10.a8.net/0.gif?a8mat=3T6JKZ+51L8AA+3J8+4YNBS1" alt="">     
-       <Image
-            src={myImage}
-            alt={group_name}
-          /> -->
+
     {
       sorted_image_list.map((name_imgurl) => (
         // console.log(name_imgurl[3]);
@@ -47,7 +40,7 @@ import myImage from "../assets/20230222_1655_01_早川 聖来.jpg";
         <a class="imageover" href={name_imgurl[3]}>
           <Image
             src={name_imgurl[4]}
-            format={'jpg'} 
+            format={'webp'} 
             alt={group_name + " " + name_imgurl[0]} 
             width={300} height={300}
             
@@ -84,10 +77,11 @@ import myImage from "../assets/20230222_1655_01_早川 聖来.jpg";
     /* background-color: palevioletred; */
   }
   img {
-    width: calc(100%);
+    width: calc(99%);
     height: calc(100%);
     object-fit: cover;
     border-radius: 30px;
+    margin: 5px;
     transition: transform 1s, border-radius 1s;
   }
   img:hover {
@@ -97,20 +91,20 @@ import myImage from "../assets/20230222_1655_01_早川 聖来.jpg";
 
   .image-info {
     position: absolute;
+
     bottom: 25px;
     left: 25px;
   }
   .image-info .name {
     color: hotpink;
-    font-size: 2rem;
+    font-size: 1rem;
+
   }
   .ad1{
       width: 350px; 
       height: 240px;
     }
-  .a8advertisement{
-      width:1px; height:1px;
-    }
+  
   @media (max-width: 600px) {
     .imageover {
       width: calc(100%);

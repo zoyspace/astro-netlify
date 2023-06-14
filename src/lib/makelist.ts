@@ -1,10 +1,10 @@
 import { getImage } from "astro:assets";
 import { getBlog } from "../lib/microcms";
 const response = await getBlog();
-const maxNumber = 3000;
+const maxNumber = 50;
 
-export const delContent: object = delTags(response.content);
-export const image_list = makeImageList(delContent as Object);
+const delContent: object = delTags(response.content);
+const image_list = makeImageList(delContent as Object);
 export const sorted_image_list = sortListInList(image_list);
 // console.log(sorted_image_list);
 // console.log(
